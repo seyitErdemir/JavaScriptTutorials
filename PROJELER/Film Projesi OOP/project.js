@@ -25,7 +25,7 @@ function addFilm(e) {
 
     if (title ===""|| director===""|| url==="") {
         //hata mesajı
-        console.log("hata");
+        ui.displayMessages("tüm alanları doldurunuz","danger");
     }else{
         //yeni film
         const newFilm=new Film(title,director,url);

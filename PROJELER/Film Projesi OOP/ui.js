@@ -32,3 +32,11 @@ UI.prototype.clearInputs = function (element1, element2, element3) {
 
 
 }
+UI.prototype.displayMessages = function(message,type){
+    const cordBody=document.querySelector(".card-body");
+    //alert divini oluşturma
+
+    const div=document.createElement("div");
+    div.className= `alert alert-${type}`;
+    div.textContent=message;
+}
