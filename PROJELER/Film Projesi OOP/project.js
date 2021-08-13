@@ -30,10 +30,12 @@ function addFilm(e) {
         //yeni film
         const newFilm=new Film(title,director,url);
         ui.addFilmToUI(newFilm); //arayüze film ekleme
+        ui.displayMessages("film başarıyla eklendi","success");
+
     }
 
-
-    ui.clearInputs(titleElement,directorElement,urlElement);
     e.preventDefault();
+    ui.clearInputs(titleElement,directorElement,urlElement);
+
 
 }

@@ -26,17 +26,24 @@ UI.prototype.addFilmToUI = function (newFilm) {
 
 UI.prototype.clearInputs = function (element1, element2, element3) {
 
-    elemenet1.value = "";
+    element1.value = "";
     element2.value = "";
     element3.value = "";
 
 
 }
-UI.prototype.displayMessages = function(message,type){
-    const cordBody=document.querySelector(".card-body");
+UI.prototype.displayMessages = function (message, type) {
+    const cardBody = document.querySelector(".card-body");
     //alert divini oluşturma
 
-    const div=document.createElement("div");
-    div.className= `alert alert-${type}`;
-    div.textContent=message;
+    const div = document.createElement("div");
+    div.className = `alert alert-${type}`;
+    
+    div.textContent = message;
+    
+    cardBody.appendChild(div);
+
+    setTimeout(function () {
+        div.remove();
+    }, 1000);
 }
