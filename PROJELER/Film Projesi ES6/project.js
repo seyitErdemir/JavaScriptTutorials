@@ -5,12 +5,7 @@ const urlElement = document.querySelector("#url");
 const cardbody = document.querySelectorAll(".card-body")[1];
 const clear = document.getElementById("clear-films");
 
-//UI objesini başlatma
-const ui = new UI();
  
-//storage objesi üret 
-const storage =new Storage();
-
 //tüm eventleri yükleme
 
 eventListeners();
@@ -18,9 +13,9 @@ eventListeners();
 function eventListeners() {
     form.addEventListener("submit", addFilm);
     document.addEventListener("DOMContentLoaded",function(){
-        let films=storage.getFilmsFromStorage();
+        let films=Storage.getFilmsFromStorage();
 
-        ui.loadAllFilms(films);
+        UI.loadAllFilms(films);
     });
     
     cardbody.addEventListener("click",deleteFilm);
@@ -35,36 +30,36 @@ function addFilm(e) {
 
     if (title ===""|| director===""|| url==="") {
         //hata mesajı
-        ui.displayMessages("tüm alanları doldurunuz","danger");
+        UI.displayMessages("tüm alanları doldurunuz","danger");
     }else{
         //yeni film
         const newFilm=new Film(title,director,url);
-        ui.addFilmToUI(newFilm); //arayüze film ekleme
-        storage.addFilmToStorage(newFilm);//storage a film ekleme
-        ui.displayMessages("film başarıyla eklendi","success");
+        UI.addFilmToUI(newFilm); //arayüze film ekleme
+        Storage.addFilmToStorage(newFilm);//storage a film ekleme
+        UI.displayMessages("film başarıyla eklendi","success");
 
     }
 
     e.preventDefault();
-    ui.clearInputs(titleElement,directorElement,urlElement);
+    UI.clearInputs(titleElement,directorElement,urlElement);
 
 
 }
 
 function deleteFilm(e){
   if (e.target.id === "delete-film") {
-      ui.deleteFilmFromUI(e.target);
-      storage.deleteFilmFromStorage(e.target.parentElement.previousElementSibling.previousElementSibling.textContent);
+    UI.deleteFilmFromUI(e.target);
+      Storage.deleteFilmFromStorage(e.target.parentElement.previousElementSibling.previousElementSibling.textContent);
     
-      ui.displayMessages("Silme işlemi başarılı ... ","success");
+      UI.displayMessages("Silme işlemi başarılı ... ","success");
   }
 }
 
 function clearAllFilms(e){
     if (confirm("Eminmisiniz ")) {
-        ui.clearAllFilmsFromUI();
-    storage.clearAllFilmsFromStorage(); 
-    ui.displayMessages(" Tüm Filmleri Silme işlemi başarılı ... ","success");    
+        UI.clearAllFilmsFromUI();
+    Storage.clearAllFilmsFromStorage(); 
+    UI.displayMessages(" Tüm Filmleri Silme işlemi başarılı ... ","success");    
 }
    
 }
