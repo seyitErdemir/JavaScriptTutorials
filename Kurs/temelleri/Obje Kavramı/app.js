@@ -1,9 +1,12 @@
 let value;
 
+
+
+
 const programmer={
     name:"seyit erdemir",
     age:25,
-    email:"seyit erdemir asdasd",
+    email:"seyiterdemir4242@gmail.com",
     langs:["python","java","javascript"],
     address:{
         city:"ankara",
@@ -11,9 +14,12 @@ const programmer={
     },
 
     work:function(){
-        console.log("program çaşoıasd");
+        console.log("program çalışıyor");
     }
 }
+
+
+
 value=programmer;
 value=programmer.email;//genel olarak bu kullanılıyor
 value=programmer["email"];

@@ -78,3 +78,5 @@ console.log(value1,value2,value3);
 }
 console.log("-----------------------");
 console.log(value1,value2,value3);
+
+console.log(this.window);
