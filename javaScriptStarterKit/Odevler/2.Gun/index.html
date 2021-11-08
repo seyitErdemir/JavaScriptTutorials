@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Odevler</title>
+</head>
+
+<body>
+
+</body>
+
+<script>
+    function asalBulan(sayi) {
+        if (sayi == 0) {
+            console.log("sayı 0 dır")
+        } else if (sayi == 1) {
+            console.log("sayi 1 dir ")
+        } else {
+            for (let i = 2; i < sayi; i++) {
+                if (sayi % i == 0) {
+                   return false
+                    
+                } else {
+                    return   true
+                    
+                }
+            }
+        }
+    }
+ 
+    function asal(...numbers) {
+        for (let i = 0; i < numbers.length; i++) {
+            let sayi = numbers[i]
+            if (asalBulan(sayi)) {
+                console.log(sayi + " asaldır ")
+            } else {
+                console.log(sayi + " asal degildir ")
+
+            }
+        }
+    }
+
+    asal(1,5,  6, 7);
+    console.log("---------------------------------------------")
+
+
+
+
+
+</script>
+
+</html>
