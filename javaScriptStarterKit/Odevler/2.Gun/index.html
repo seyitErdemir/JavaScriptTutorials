@@ -20,13 +20,16 @@
         } else if (sayi == 1) {
             console.log("sayi 1 dir ")
         } else {
-            for (let i = 2; i < sayi; i++) {
-                if (sayi % i == 0) {
+            for (let i = 2; i<sayi; i++) {
+                if (sayi % i  == 0) {
 
                     return false
+                   
 
                 } else {
                     return true
+                   
+                    
 
                 }
             }
@@ -45,7 +48,7 @@
         }
     }
 
-    asal(1, 5, 6, 7);
+    asal(1, 9, 6, 7);
     console.log("---------------------------------------------")
 
     function arkadas(a, b) {
@@ -92,6 +95,22 @@
 
     mukemmelSayi(1500);
 
+
+    console.log("---------------------------------------------")
+
+   
+   
+    function asalSayiBul(deger){
+        let dizi =[];
+        for (let i = 2; i <deger; i++) {
+            if ( asalBulan(i)) {
+                dizi.push(i);
+            }
+        }
+        console.log(dizi)
+    }
+
+    asalSayiBul(55);
 
 </script>
 
