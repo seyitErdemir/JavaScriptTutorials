@@ -49,30 +49,48 @@
     console.log("---------------------------------------------")
 
     function arkadas(a, b) {
-        let toplam1 =1;
-        let toplam2 =1;
+        let toplam1 = 1;
+        let toplam2 = 1;
         for (let i = 2; i < a; i++) {
             if (a % i == 0) {
-                toplam1 = toplam1+i;
-            }  
+                toplam1 = toplam1 + i;
+            }
             if (b % i == 0) {
-                toplam2 = toplam2+i;
-            } 
+                toplam2 = toplam2 + i;
+            }
         }
 
-        if(toplam1 == b ){
+        if (toplam1 == b) {
             console.log(a + " ile  " + b + " sayısı arkadaş sayılardır")
-        }else{
-            console.log(a+" sayısının bölen toplamı = "+toplam1)
-            console.log(b+" sayısının bölen toplamı = "+toplam2)
+        } else {
+            console.log(a + " sayısının bölen toplamı = " + toplam1)
+            console.log(b + " sayısının bölen toplamı = " + toplam2)
             console.log("iki bölen toplamı diger sayılardan herhangi birisine  eşit olmadıgından kardeş sayı degillerdir")
         }
     }
 
-arkadas(220,284)
+    arkadas(220, 284)
 
 
-console.log("---------------------------------------------")
+    console.log("---------------------------------------------")
+
+    function mukemmelSayi(gelenSayi) {
+
+        for (let i = 2; i < gelenSayi; i++) {
+            denenecekSayi = i;
+            toplam = denenecekSayi + 1;
+            for (let i = 2; i < denenecekSayi; i++) {
+                if (denenecekSayi % i == 0) {
+                    toplam = toplam + i;
+                }
+            }
+            if(toplam == (2*denenecekSayi)){
+                console.log(denenecekSayi + "  mukemmel sayıdır")
+            }
+        }
+    }
+
+    mukemmelSayi(1500);
 
 
 </script>
