@@ -14,6 +14,7 @@
 
 <script>
     function asalBulan(sayi) {
+
         if (sayi == 0) {
             console.log("sayı 0 dır")
         } else if (sayi == 1) {
@@ -21,16 +22,17 @@
         } else {
             for (let i = 2; i < sayi; i++) {
                 if (sayi % i == 0) {
-                   return false
-                    
+
+                    return false
+
                 } else {
-                    return   true
-                    
+                    return true
+
                 }
             }
         }
     }
- 
+
     function asal(...numbers) {
         for (let i = 0; i < numbers.length; i++) {
             let sayi = numbers[i]
@@ -43,11 +45,34 @@
         }
     }
 
-    asal(1,5,  6, 7);
+    asal(1, 5, 6, 7);
     console.log("---------------------------------------------")
 
+    function arkadas(a, b) {
+        let toplam1 =1;
+        let toplam2 =1;
+        for (let i = 2; i < a; i++) {
+            if (a % i == 0) {
+                toplam1 = toplam1+i;
+            }  
+            if (b % i == 0) {
+                toplam2 = toplam2+i;
+            } 
+        }
+
+        if(toplam1 == b ){
+            console.log(a + " ile  " + b + " sayısı arkadaş sayılardır")
+        }else{
+            console.log(a+" sayısının bölen toplamı = "+toplam1)
+            console.log(b+" sayısının bölen toplamı = "+toplam2)
+            console.log("iki bölen toplamı diger sayılardan herhangi birisine  eşit olmadıgından kardeş sayı degillerdir")
+        }
+    }
+
+arkadas(220,284)
 
 
+console.log("---------------------------------------------")
 
 
 </script>
