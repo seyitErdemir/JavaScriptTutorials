@@ -15,20 +15,48 @@
     <button id="btn">Ajax İşlemi Gerçekleştir</button>
 
 
-    <ul>
-        <li>sads</li>
-        <ul>
-            <li>sads</li>
-            <li>sads</li>
-            <li>sads</li>
+    <div align="center">
+        <button id="baslat">başlat</button>
+        <input type="number" id="number">
 
-        </ul>
-        <li>sads</li>
-        <li>sads</li>
-        <li>sads</li>
 
-    </ul>
+        <button id="durdur">durdur</button>
 
+    </div>
+
+    <script>
+
+
+        document.getElementById('baslat').addEventListener('click', function () {
+            const xhr = new XMLHttpRequest();
+            if (document.getElementById("number").value) {
+                let veri = document.getElementById("number").value;
+            } else {
+                veri = 0;
+            }
+
+            xhr.onload = function () {
+                if (this.status == 200) {
+
+                  var value =  setInterval(function () {
+                        veri = JSON.parse(veri) + 1;
+
+                        console.log(veri)
+
+                        document.getElementById("number").value = veri;
+                    
+                    }, 1000);
+
+                }
+
+            }
+            xhr.open("GET", "example.txt", true);
+            xhr.send();
+
+        });
+
+
+    </script>
     <script src="app.js"></script>
 </body>
 
