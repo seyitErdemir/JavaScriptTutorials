@@ -52,7 +52,8 @@ async function getCurrency(url){
     const response = await fetch(url);
     const data = await response.json()
 
-    console.log(data)
+    return data
 }
 
 getCurrency("http://api.exchangeratesapi.io/v1/latest?access_key=2145fc88497a1c7ed1812f0ccd54ae4a")
+.then( response => console.log(response))
