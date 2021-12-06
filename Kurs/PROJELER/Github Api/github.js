@@ -12,7 +12,7 @@ class Github {
 
         return{
             user:userData,
-            repo:userRepo
+            repos:userRepo
         }
 
     }

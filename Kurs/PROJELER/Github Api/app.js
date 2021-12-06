@@ -25,13 +25,13 @@ function getData(e){
        github.getGithubData(userName)
        .then(response =>{
            if (response.user.message ==="Not Found") {
-               //Hata Mesajı
-               console.log("Hata")
+               ui.showError("Kullanıcı Bulunamadı")
            }else{
               ui.showUserInfo(response.user)
+              ui.showRepoInfo(response.repos)
            }
        })
-       .catch(err => console.log(err))
+       .catch(err => ui.showError(err))
        
 
 
