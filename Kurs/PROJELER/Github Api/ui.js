@@ -91,6 +91,7 @@ class UI {
 
 
 
+
     showError(message) {
         const div = document.createElement("div")
         div.className = "alert alert-danger"
@@ -100,5 +101,23 @@ class UI {
         setTimeout(() => {
             div.remove()
         }, 2000);
+    }
+
+
+    addSearchUserToUI(username){
+            let users = Storage.getSearchUsersFromStorage()
+            if (users.indexOf(username)===-1) {
+                const li = document.createElement("li")
+                li.className="list-group-item"
+                li.textContent=username
+
+                this.lastUsers.appendChild(li)
+            }
+    }
+
+    clearAllSearchedFromUI(){
+        while(this.lastUsers.firstChild !== null){
+            this.lastUsers.removeChild(this.lastUsers.firstElementChild)
+        }
     }
 }
