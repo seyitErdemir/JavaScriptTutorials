@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cinsiyet Tahmin Etme</title>
+</head>
+
+<body>
+  <label for="">İsim Gir</label>
+  <input id="isim" type="text" value="">
+  <br>
+  <label for="">Tahmin Et : </label>
+
+
+  <select name="" id="cins">
+    <option value="female">Kadın</option>
+    <option value="male">Erkek</option>
+    
+  </select> 
+  <br>
+ 
+  <input type="submit" value="Gönder" onclick="calis()">
+
+</body>
+
+
+<script>
+
+  function getDataApi(url, isim,tahmin) {
+    fetch(url + isim)
+      .then(response => response.json())
+      .then(data => {
+
+        if(data.gender==tahmin){
+            
+            alert("dogru tahminde bulundunuz")
+        }else{
+          alert("yanlış tahminde bulundunuz")
+          console.log(tahmin)
+           
+          
+        }
+      } )
+      
+  }
+
+  function calis() {
+
+    let gelenIsim = document.getElementById("isim").value
+    let degisken = document.getElementById("cins").value
+
+    console.log(degisken)
+ 
+
+    let url = "https://api.genderize.io?name="
+
+    getDataApi(url,gelenIsim,degisken)
+
+  }
+</script>
+
+</html>
