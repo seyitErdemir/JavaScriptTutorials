@@ -2,15 +2,21 @@
   "employees": [
     {
       "name": "Arif erdemir",
-      "department": "Araç",
-      "salary": 8000,
+      "department": "Oto Tamiri",
+      "salary": 200000,
       "id": 2
     },
     {
-      "name": "gazi",
-      "department": "berber",
-      "salary": 5000,
+      "name": "Gazi Erdemir",
+      "department": "Kuafor",
+      "salary": 15000,
       "id": 3
+    },
+    {
+      "name": "Seyit Erdemir",
+      "department": "Bilişim",
+      "salary": 13000,
+      "id": 4
     }
   ]
 }
