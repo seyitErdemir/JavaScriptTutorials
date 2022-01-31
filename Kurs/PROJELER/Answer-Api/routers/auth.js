@@ -1,6 +1,6 @@
 const express = require("express")
 
-const{register,tokentest } = require('../controllers/auth')
+const{register, login,getUser  } = require('../controllers/auth')
  const  { getAccessToRoute }  = require("../middlewares/authorization/auth")
 
 
@@ -9,5 +9,7 @@ const router = express.Router()
 
 
 router.post("/register", register) 
-router.get("/tokentest",getAccessToRoute, tokentest)
+router.post("/login", login) 
+
+router.get("/profile",getAccessToRoute, getUser)
 module.exports= router

@@ -18,7 +18,7 @@ const customErrorHandler = (err, req, res, next) => {
 
   }
 
-  console.log(  customError.message, customError.status)
+  // console.log(  customError.message, customError.status)
 
 
   res.status(customError.status || 500).json({
