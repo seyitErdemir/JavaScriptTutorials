@@ -23,8 +23,10 @@ const getAccessToRoute = (req, res, next) => {
        name : decoded.name
 
      }
-     console.log(decoded)
-     next()
+
+    //  console.log(decoded)
+     
+    next()
 
    })
 
