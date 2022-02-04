@@ -5,7 +5,10 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "supervisor server.js"
+    "start": "supervisor server.js",
+    "dev": "supervisor server.js",
+    "import": "node dummy-generator --import",
+    "delete": "node dummy-generator --delete"
   },
   "author": "Seyit Erdemir",
   "license": "MIT",

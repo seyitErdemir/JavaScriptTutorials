@@ -1,6 +1,7 @@
 const express = require('express')
-const answer = require('./answer')
+const Question = require('../models/Question')
 
+const answer = require('./answer')
 
 const {
   getSingleQuestion,
@@ -21,12 +22,44 @@ const {
   getQuestionOwnerAccess
 } = require('../middlewares/authorization/auth')
 
+const questionQueryMiddleware = require('../middlewares/query/questionQueryMiddleware')
+const answerQueryMiddleware = require('../middlewares/query/answerQueryMiddleware')
+
 const router = express.Router()
 
-router.get('/:id/like',[getAccessToRoute, checkQuestionExist], likeQuestion)
-router.get('/:id/undo_like',[getAccessToRoute, checkQuestionExist], undoLikeQuestion)
-router.get('/', getAllQuestions)
-router.get('/:id', checkQuestionExist, getSingleQuestion)
+router.get('/:id/like', [getAccessToRoute, checkQuestionExist], likeQuestion)
+router.get(
+  '/:id/undo_like',
+  [getAccessToRoute, checkQuestionExist],
+  undoLikeQuestion
+)
+router.get(
+  '/',
+  questionQueryMiddleware(Question, {
+    population: {
+      path: 'user',
+      select: 'name profile_image'
+    }
+  }),
+  getAllQuestions
+)
+router.get(
+  '/:id',
+  checkQuestionExist,
+  answerQueryMiddleware(Question, {
+    population: [
+      {
+        path: 'user',
+        select: 'name profile_image'
+      },
+      {
+        path: 'answers',
+        select: 'content'
+      }
+    ]
+  }),
+  getSingleQuestion
+)
 router.post('/ask', getAccessToRoute, askNewQuestion)
 router.put(
   '/:id/edit',
@@ -40,7 +73,6 @@ router.delete(
   deleteQuestion
 )
 
-
-router.use("/:question_id/answers",checkQuestionExist,answer)
+router.use('/:question_id/answers', checkQuestionExist, answer)
 
 module.exports = router
