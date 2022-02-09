@@ -8,6 +8,8 @@ import {
   NavItem,
   NavLink
 } from 'reactstrap'
+import { Link } from 'react-router-dom'
+
 export default class CartSummary extends Component {
   renderSummary () {
     return (
@@ -21,13 +23,17 @@ export default class CartSummary extends Component {
               <Badge
                 color='danger'
                 onClick={() => this.props.removeFromCart(cartItem.product)}
-              >X</Badge>
+              >
+                X
+              </Badge>
               {cartItem.product.productName} {}
               <Badge color='success'> {cartItem.quantity}</Badge>
             </DropdownItem>
           ))}
           <DropdownItem divider />
-          <DropdownItem>Reset</DropdownItem>
+          <DropdownItem>
+            <Link to='cart'>Go To Cart</Link>
+          </DropdownItem>
         </DropdownMenu>
       </UncontrolledDropdown>
     )
