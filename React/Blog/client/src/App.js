@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
+import { useDispatch } from 'react-redux'
 import {
   CssBaseline,
   Container,
@@ -21,6 +22,8 @@ import {
 import PenIcon from '@material-ui/icons/Create'
 
 import PostList from './components/PostList'
+import AddPostForm from './components/AddPostForm'
+import { fetchPosts } from './actions/post'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -38,6 +41,20 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const App = () => {
+  const dispatch = useDispatch()
+  const [open, setOpen] = useState(false)
+  
+  useEffect(() => {
+    dispatch(fetchPosts())
+  }, [dispatch])
+
+  const handleOpen = () => {
+    setOpen(true)
+  }
+  const handleClose = () => {
+    setOpen(false)
+  }
+
   const classes = useStyles()
 
   return (
@@ -58,7 +75,12 @@ const App = () => {
             >
               <a href='http://localhost:3000/posts'>Blogify</a>
             </Typography>
-            <Button color='primary' variant='autlined' startIcon={<PenIcon />}>
+            <Button
+              color='primary'
+              variant='outlined'
+              startIcon={<PenIcon />}
+              onClick={handleOpen}
+            >
               Yeni Yazı
             </Button>
           </Toolbar>
@@ -75,6 +97,8 @@ const App = () => {
           </Grid>
         </Grid>
       </Container>
+
+      <AddPostForm open={open} handleClose={handleClose}></AddPostForm>
     </>
   )
 }
