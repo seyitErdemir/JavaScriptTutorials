@@ -6,6 +6,7 @@ import { ListGroup, ListGroupItem } from 'reactstrap'
 
 class CategoryList extends Component {
   componentDidMount () {
+    
     this.props.actions.getCategories()
   }
   render () {
