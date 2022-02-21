@@ -9,6 +9,7 @@ class CategoryList extends Component {
     
     this.props.actions.getCategories()
   }
+  
   render () {
     return (
       <div>
