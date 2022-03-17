@@ -1,0 +1,103 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;1,200;1,400&display=swap');
+.App {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: relative;
+  background-size: cover;
+}
+
+.searchInput {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  margin-top: 150px;
+}
+.searchBtn button {
+  box-sizing: border-box;
+
+  padding: 10px;
+  margin-left: 10px;
+  outline: none;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 4px;
+  font-family: 'Poppins', sans-serif;
+  cursor: pointer;
+  background: #fefefe;
+  color: #31373e;
+  font-weight: bold;
+}
+.searchInput input {
+  width: 30%;
+  box-sizing: border-box;
+  height: 40px;
+  outline: none;
+  font-weight: bold;
+  border-radius: 3px;
+  border: 1px solid #d8dce4;
+  background: #fefefe;
+  color: #31373e;
+  padding: 10px 40px 10px 10px;
+  font-family: 'Poppins', sans-serif;
+  text-transform: capitalize;
+}
+
+.weatherWrapper {
+  opacity: 0.8;
+  width: 35%;
+  border: 1px solid #d8dce4;
+  height: 50%;
+  background-color: white;
+  box-shadow: 0 0 4px;
+}
+.ortak {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid gray;
+  width: 90%;
+  border-radius: 9px;
+  margin: 3% auto;
+  font-family: 'Poppins', sans-serif;
+  text-transform: capitalize;
+}
+
+.card-header {
+  height: 20%;
+}
+.card-body {
+  font-size: 70px;
+  height: 42%;
+}
+.card-footer {
+  height: 20%;
+}
+
+@media only screen and (max-width: 1150px) {
+  .weatherWrapper {
+   
+    width: 50%;
+    
+  }
+}
+
+
+@media only screen and (max-width: 600px) {
+  .weatherWrapper {
+   
+    width: 80%;
+    
+  }
+}
