@@ -1,10 +1,9 @@
-import React, { useState } from 'react'
-import clsx from 'clsx'
+import React, { useState } from 'react' 
 import { GrFormClose, GrFormEdit, GrFormCheckmark } from 'react-icons/gr'
 import { useTodoLayerValue } from '../context/TodoContext'
 
 const Todo = ({ todo }) => {
-  const [{}, dispatch] = useTodoLayerValue()
+  const [ , dispatch] = useTodoLayerValue()
   const [editable, setEditable] = useState(false)
   const [content, setContent] = useState(todo.content)
 
@@ -28,13 +27,10 @@ const Todo = ({ todo }) => {
     })
   }
 
-  const todoStyle = clsx({
-    ['todo-row']: true,
-    ['completed']: todo.isComplated
-  })
+ 
 
   return (
-    <div className={todoStyle}>
+    <div  className={  todo.isComplated  ? "todo-row  completed"   : " todo-row " } >
       <div onClick={() => (editable ? ' ' : completeTodo(todo.id))}>
         {editable ? (
           <input
