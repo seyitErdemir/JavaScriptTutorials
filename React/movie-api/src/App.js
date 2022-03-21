@@ -1,34 +1,54 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import './App.css'
 
 const App = () => {
+  const [movie, setMovie] = useState([])
+
+  useEffect(() => {
+    fetch(
+      `https://api.themoviedb.org/3/movie/now_playing?api_key=2d4ed3880b7cfacbc127304f001b627c`
+    )
+      .then(response => response.json())
+      .then(data => {
+        setMovie(data.results)
+        console.log(data)
+      })
+  }, [])
+
+  console.log(movie)
   return (
     <div>
-      <div className='container    mx-auto '>
-        <div className='  grid-rows-1   px-4 border-4 h-16 border-indigo-600 mt-6'>
-          SADASDsad
-        </div>
-        <div className=' grid grid-cols-2 gap-4       px-4 border-4  p-8  border-indigo-600 mt-6 '>
-          <div className='     4 border-4 h-16 border-indigo-600  '></div>
-          <div className='      4 border-4 h-16 border-indigo-600   '></div>
+      <div className='container    mx-auto  '>
+        <div className='  baslik  grid-rows-1  text-center'>
+          Film Laboratuvarı
         </div>
 
-        <div className=' grid grid-cols-4  gap-4       px-4 border-4  p-8  border-indigo-600 mt-6 '>
-          <div className=' col-span-2    4 border-4 h-16 border-indigo-600  '></div>
-          <div className='      4 border-4 h-16 border-indigo-600   '></div>
-          <div className='      4 border-4 h-16 border-indigo-600   '></div>
-     
+        <div className='searchInput'>
+          <input   placeholder='Henüz Çalışmıyor...'></input>
         </div>
 
-        
-        <div className=' grid grid-cols-12  gap-6       px-4 border-4  p-8  border-indigo-600 mt-6 '>
-          <div className=' col-span-2    4 border-4 h-16 border-indigo-600  '></div>
-          <div className='      4 border-4 h-16 border-indigo-600   '></div>
-          <div className='      4 border-4 h-16 border-indigo-600   '></div>
-          <div className='      4 border-4 h-16 border-indigo-600   '></div>
-          <div className='      4 border-4 h-16 border-indigo-600   '></div>
-          <div className=' col-span-2    4 border-4 h-16 border-indigo-600  '></div>
-
-     
+        <div className=' grid grid-cols-4  gap-3       px-4   p-8    mt-6 '>
+          {movie.map((film, i) => (
+            <div key={i} className=' border-x-rose-300    p-2 '>
+              <div className=' text-center card-header'>
+                <h1>{film.title}</h1>
+              </div>
+              <div className='card-body'>
+                <p className='yazi'>{film.overview}</p>
+                <img
+                  src={'https://image.tmdb.org/t/p/w300' + film.poster_path}
+                ></img>
+              </div>
+              <div
+                className={
+                  film.vote_average > 6 ? 'footer green' : 'footer yellow'
+                }
+              >
+                {film.vote_average}
+              </div>
+              {/* <div className='footer'>{film.release_date}</div> */}
+            </div>
+          ))}
         </div>
       </div>
     </div>

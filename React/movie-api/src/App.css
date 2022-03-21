@@ -1,1 +1,100 @@
-.App {}
+body {
+    font-family: 'Sriracha', cursive;
+    background: -webkit-linear-gradient( to right, #c2a37c, #d4c008);
+    background: linear-gradient( to right, #c2a37c, #d4c008);
+}
+
+.baslik {
+    font-size: 60px;
+    color: #e0d679;
+    padding: 2rem;
+}
+
+.searchInput {
+    width: 100%;
+    box-sizing: border-box;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+}
+
+.searchInput input {
+    width: 30%;
+    box-sizing: border-box;
+    height: 40px;
+    font-size: 20px;
+    outline: none;
+    font-weight: bold;
+    border-radius: 7px;
+    border: 1px solid #d8dce4;
+    background: #e0d679;
+    color: black;
+    padding: 10px 40px 10px 10px;
+    font-family: 'Sriracha', cursive;
+    text-transform: capitalize;
+}
+
+.card-header {
+    width: 90%;
+    margin: 5px auto;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+}
+
+.card-body {
+    width: 90%;
+    margin: 5px auto;
+    position: relative;
+}
+
+.card-body img {
+    margin: 0px auto;
+}
+
+.yazi {
+    display: none;
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    right: 20px;
+    font-weight: 700;
+}
+
+.footer {
+    width: 20%;
+    margin: 5px auto;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: 900;
+    color: white;
+    border-radius: 100px;
+}
+
+.footer:hover {
+    color: black;
+    background-color: white;
+}
+
+.green {
+    background-color: green;
+}
+
+.yellow {
+    background: rgba(236, 236, 9, 0.829)
+}
+
+.card-body:hover img {
+    opacity: 0.1;
+}
+
+.card-body:hover .yazi {
+    display: block;
+}
