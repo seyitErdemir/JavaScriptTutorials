@@ -35,9 +35,7 @@ const App = () => {
               </div>
               <div className='card-body'>
                 <p className='yazi'>{film.overview}</p>
-                <img
-                  src={'https://image.tmdb.org/t/p/w300' + film.poster_path}
-                ></img>
+                <img src={'https://image.tmdb.org/t/p/w300'+film.poster_path}></img>
               </div>
               <div
                 className={
