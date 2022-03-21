@@ -3,6 +3,7 @@ import './App.css'
 
 const App = () => {
   const [movie, setMovie] = useState([])
+  const [search, setSearch] = useState('')
 
   useEffect(() => {
     fetch(
@@ -24,29 +25,40 @@ const App = () => {
         </div>
 
         <div className='searchInput'>
-          <input   placeholder='Henüz Çalışmıyor...'></input>
+          <input
+            value={search}
+            onChange={e => setSearch(e.target.value)}
+            placeholder='Arama...'
+          ></input>
         </div>
 
         <div className=' grid grid-cols-4  gap-3       px-4   p-8    mt-6 '>
-          {movie.map((film, i) => (
-            <div key={i} className=' border-x-rose-300    p-2 '>
-              <div className=' text-center card-header'>
-                <h1>{film.title}</h1>
+          {movie
+            .filter(item =>
+              item.title.toLowerCase().includes(search.toLowerCase())
+            )
+            .map((film, i) => (
+              <div key={i} className=' border-x-rose-300    p-2 '>
+                <div className=' text-center card-header'>
+                  <h1>{film.title}</h1>
+                </div>
+                <div className='card-body'>
+                  <p className='yazi'>{film.overview}</p>
+                  <img
+                    alt='movie'
+                    src={'https://image.tmdb.org/t/p/w300' + film.poster_path}
+                  ></img>
+                </div>
+                <div
+                  className={
+                    film.vote_average > 6 ? 'footer green' : 'footer yellow'
+                  }
+                >
+                  {film.vote_average}
+                </div>
+                {/* <div className='footer'>{film.release_date}</div> */}
               </div>
-              <div className='card-body'>
-                <p className='yazi'>{film.overview}</p>
-                <img src={'https://image.tmdb.org/t/p/w300'+film.poster_path}></img>
-              </div>
-              <div
-                className={
-                  film.vote_average > 6 ? 'footer green' : 'footer yellow'
-                }
-              >
-                {film.vote_average}
-              </div>
-              {/* <div className='footer'>{film.release_date}</div> */}
-            </div>
-          ))}
+            ))}
         </div>
       </div>
     </div>
