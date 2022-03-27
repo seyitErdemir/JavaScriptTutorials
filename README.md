@@ -1,2 +1,2 @@
-# JavaScriptTutorials
-https://www.udemy.com/course/komple-sifirdan-web-gelistirme-kursu/learn/lecture/12211984#questions/8982716
+# Dökmanlar ve Kaynaklar
+https://seyiterdemir.github.io/JavaScriptTutorials/
