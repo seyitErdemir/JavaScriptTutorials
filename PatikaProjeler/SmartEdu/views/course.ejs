@@ -6,7 +6,7 @@
 
         <div class="all-title-box">
             <div class="container text-center">
-                <h1>Course Single<span class="m_1">Lorem Ipsum dolroin gravida nibh vel velit.</span></h1>
+                <h1>  <%= course.name %><span class="m_1">Lorem Ipsum dolroin gravida nibh vel velit.</span></h1>
             </div>
         </div>
 
@@ -76,10 +76,10 @@
                     <div class="col-lg-3 col-12 right-single">
                         <div class="widget-search">
                             <div class="site-search-area">
-                                <form method="get" id="site-searchform" action="#">
+                                <form method="GET" id="site-searchform" action="/courses">
                                     <div>
-                                        <input class="input-text form-control" name="search-k" id="search-k" placeholder="Search keywords..." type="text">
-                                        <input id="searchsubmit" value="Search" type="submit">
+                                        <input class="input-text form-control" name="search" id="search-k" placeholder="Search keywords..." type="text">
+                                        <button id="searchsubmit" value="Search" type="submit"></button>
                                     </div>
                                 </form>
                             </div>
@@ -87,12 +87,13 @@
                         <div class="widget-categories">
                             <h3 class="widget-title">Categories</h3>
                             <ul>
-                                <li><a href="#">Political Science</a></li>
-                                <li><a href="#">Business Leaders Guide</a></li>
-                                <li><a href="#">Become a Product Manage</a></li>
-                                <li><a href="#">Language Education</a></li>
-                                <li><a href="#">Micro Biology</a></li>
-                                <li><a href="#">Social Media Management</a></li>
+                                <%  for (var i = 0; i < categories.length; i++) {%>
+                                    <li>
+                                        <a href="/courses?categories=<%= categories[i].slug %>">
+                                            <%= categories[i].name %>
+                                        </a>
+                                    </li>
+                                    <%  }%>
                             </ul>
                         </div>
                     </div>
