@@ -28,5 +28,6 @@ router.route('/singup').post(
 router.route('/login').post(authController.loginUser) //   http://localhost:3000/users/login
 router.route('/logout').get(authController.logoutUser) //
 router.route('/dashboard').get(authMiddleware, authController.getDashboardPage) //  http://localhost:3000/users/dashboard
+router.route('/:id').delete(authController.deleteUser) // http://
 
 module.exports = router
