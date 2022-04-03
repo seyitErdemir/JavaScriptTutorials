@@ -67,7 +67,6 @@ exports.getDashboardPage = async(req, res) => {
     const courses = await Course.find({ user: req.session.userID })
 
     const users = await User.find()
-
  
 
     res.status(200).render('dashboard', {
@@ -82,8 +81,12 @@ exports.getDashboardPage = async(req, res) => {
 
 exports.deleteUser = async (req, res) => {
     try {
+
+
+        
      const user=  await User.findByIdAndRemove({_id:req.params.id}) 
-     await Course.deleteMany({user:req.params.id}) 
+    //  await Course.deleteMany({user:req.params.id}) 
+     await Course.deleteMany({user:user._id}) 
      res.status(200).redirect('/users/dashboard')
   
 
