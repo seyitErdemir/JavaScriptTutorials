@@ -5,9 +5,13 @@ const MongoStore = require('connect-mongo');
 const flash = require('connect-flash');
 const methodOverride = require("method-override")
 const pageRoute = require('./routes/pageRoute')
+const adminRoute = require('./routes/adminRoute')
 const courseRoute = require('./routes/courseRoute')
 const categoryRoute = require('./routes/categoryRoute')
 const userRoute = require('./routes/userRoute')
+
+
+
 
 const app = express()
 
@@ -58,6 +62,11 @@ app.use('*', (req, res, next) => {
     next()
 })
 app.use('/', pageRoute)
+app.use('/admin', adminRoute)
+
+
+
+
 app.use('/courses', courseRoute)
 app.use('/categories', categoryRoute)
 app.use('/users', userRoute)

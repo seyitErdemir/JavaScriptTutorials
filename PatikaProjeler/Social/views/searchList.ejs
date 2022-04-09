@@ -1,0 +1,36 @@
+<%- include('newpartials/_header'); %>
+
+
+<div class="container p-5">
+    <div class="row p-5">
+        <h1> " <%=    query     %>  "  aramasına ait sonuçlar</h1>
+    </div>
+    <div class="row">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Profili Görüntüle</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <% for (var i = 0; i < users.length; i++) { %>
+                    <tr>
+                        <th scope="col"> <%= i  %> </th>
+                        <td scope="col" ><%= users[i].name  %> </td>
+                        <td scope="col" ><%= users[i].email %> </td>
+                        <td scope="col" >  <a class="btn btn-warning btn-xs" href="/profile/<%= users[i]._id %> "> Profili Görüntüle</a> </td>
+                    </tr>
+
+                <% } %>
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<%- include('newpartials/_footer'); %>

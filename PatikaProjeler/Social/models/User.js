@@ -18,8 +18,8 @@ const UserSchema = new Schema({
     },
     role: {
         type: String,
-        enum: ['student', 'teacher', 'admin'],
-        default: 'student'
+        enum: ['user', 'preuser', 'admin'],
+        default: 'user'
     },
     courses: [{
         type: mongoose.Schema.Types.ObjectId,

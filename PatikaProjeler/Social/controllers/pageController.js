@@ -5,13 +5,55 @@ const User = require("../models/User")
 
 exports.getIndexPage = async (req, res) => {
     // console.log(req.session.userID);
-    const courses = await Course.find().sort("-createdAt").limit(2)
-    const totalCourses =await Course.find().countDocuments()
-    const totalStudents =await User.find().countDocuments({role: "Student"})
-    const totalTeachers =await User.find().countDocuments({role: "Teacher"} )
-
-    res.status(200).render('newindex', { page_name: 'index' , courses , totalCourses , totalStudents ,totalTeachers})
+    res.status(200).render('newindex', { page_name: 'index'  })
 }
+
+exports.getSearchPage = async (req, res) => { 
+    try { 
+        const query = req.body.search
+        let filter = {};
+        if(query) {
+          filter = {name:query}
+        }else{
+             filter.name = "" 
+        }
+        const users = await User.find({
+          $or: [
+            { name: { $regex: '.*' + filter.name + '.*', $options: 'i' } } 
+          ]
+        }).sort('-createdAt')  
+        res.status(200).render('searchList', { page_name: 'index' , users  , query })
+    } catch (error) {
+        res.status(201).json({
+          status: 'fail',
+          error
+        })
+      }
+}
+
+exports.getUserProfilePage = async (req, res) => { 
+    try { 
+        const active = false
+        const user = await User.findById({_id:req.session.userID})
+        const userProfile = await User.findById({ _id: req.params.id })
+        if(user._id === userProfile._id){
+            active = true
+        }
+
+        //search  ve   profile detay kısımları yapıldı
+
+        console.log(user)
+       
+        res.status(200).render('profile', { page_name: 'index' , userProfile  , active   })
+    } catch (error) {
+        res.status(201).json({
+          status: 'fail',
+          error
+        })
+      }
+}
+
+
 
 exports.getAboutPage = (req, res) => {
     res.status(200).render('about', { page_name: 'about' })

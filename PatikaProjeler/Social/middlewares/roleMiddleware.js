@@ -1,8 +1,16 @@
+const User = require('../models/User')
+
+
 module.exports = (roles) => {
+   
+    return  async (req, res, next) => {
 
-    return (req, res, next) => {
-        const userRole = req.body.role
-
+        
+        const user = await User.findById({_id:req.session.userID})
+     
+        // const userRole = req.body.role 
+        const userRole = user.role
+ 
         if (roles.includes(userRole)) {
             next()
         } else {
