@@ -1,5 +1,59 @@
 <%- include('newpartials/_header'); %>
 
+<!-- Uptade Model  -->
+
+<div class="modal" id="myModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Profil Düzenle</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form method="POST"   action="/profileUpdate/<%= userProfile._id%>?_method=PUT" >
+
+                    <div class="mb-3">
+                        <label class="form-label required">Name</label>
+                        <input value="<%= userProfile.name%>" name="name" type="text" placeholder="Enter name" class="form-control" id="exampleInput">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label required">Title</label>
+                        <input  value="<%= userProfile.title%>" name="title" type="text" placeholder="Enter title" class="form-control" id="exampleInput">
+                    </div>
+
+ 
+                    <div class="mb-3">
+                        <label class="form-label required">About</label>
+                        <textarea name="about" class="form-control"><%= userProfile.about%></textarea>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="submit"   class="btn btn-primary">Submit</button>
+        
+                        <button type="submit" data-bs-dismiss="modal"  class="btn btn-danger   ">Cancel</button>
+                    </div>
+                </form>
+            </div>
+       
+        </div>
+    </div>
+</div>
+<!-- Uptade Model  -->
+
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous">
+    $(document).ready(function() {
+        $("#myModal").modal('show');
+    });
+</script>
+
+
+
+
+
+
+
+
 <div class="py-4">
     <div class="container">
         <div class="row">
@@ -9,37 +63,71 @@
                     <div class="py-4 px-3 border-bottom">
                         <img src="img/p13.png" class="img-fluid mt-2 rounded-circle" alt="Responsive image">
                         <h5 class="font-weight-bold text-dark mb-1 mt-4"><%= userProfile.name%></h5>
-                        <p class="mb-0 text-muted">UI / UX Designer</p>
+                        <p class="mb-0 text-muted"><%= userProfile.title%></p>
                     </div>
                     <div class="d-flex">
-                        <div class="col-6 border-right p-3">
-                            <h6 class="font-weight-bold text-dark mb-1">358</h6>
-                            <p class="mb-0 text-black-50 small">Connections</p>
-                        </div>
+                    
                         <div class="col-6 p-3">
-                            <h6 class="font-weight-bold text-dark mb-1">85</h6>
-                            <p class="mb-0 text-black-50 small">Views</p>
+                            <h6 class="font-weight-bold text-dark mb-1"><%= totalFollowers%></h6>
+                            <p class="mb-0 text-black-50 small">Followers</p>
+                        </div>
+
+                        <div class="col-6 border-right p-3">
+                            <h6 class="font-weight-bold text-dark mb-1"><%= totalFollowing%></h6>
+                            <p class="mb-0 text-black-50 small">Following</p>
                         </div>
 
                     </div>
-                    <% if ( active ){ %>
+                    <% if (!active){ %>
+                    
+                          
+                            <% if (  !(user.following.includes(userProfile._id))) { %>
+                                <div class="overflow-hidden border-top text-center ">
+                                     
+                                        <form class="font-weight-bold p-3 d-block" method="POST" action="/profilefollow">
+                                            <input type="hidden" name="user_id" value="<%= userProfile._id%>">
+                                            <button class="btn btn-primary btn-sm"><span>Follow</span></button>
+                                        </form>
+                                    
+                                 </div>
+
+                                <%   }else{ %> 
+
+                                    <div class="overflow-hidden border-top text-center">
+                                        <form class="font-weight-bold p-3 d-block"  method="POST" action="/profileunfollow">
+                                            <input type="hidden" name="user_id" value="<%= userProfile._id%>">
+                                            <button class=" btn btn-danger btn-sm  "><span>Unfollow</span></button>
+                                        </form>
+                                       
+                                    
+                                    </div>
+                                    
+                            
+                                    <%   }   %> 
+
+ 
+ 
+                        
+                    <%   }%>
+                  
+                    <% if (active){ %>
+                 
                         <div class="d-flex">
                             <div class="col-6 border-right p-3">
-                                <a class="btn btn-primary btn-sm" href="">Takip Et</a>
+                                <a class="font-weight-bold p-3 d-block" href="/users/logout">
+                                    Log Out
+                                </a>
                             </div>
                             <div class="col-6 p-3">
-                                <a class="btn btn-danger btn-sm" href="">Takipten Çık</a>
+                                <a type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#myModal">Profil Düzenle</a>
                             </div>
-
+    
                         </div>
-
                     <%   }%>
 
-                    <div class="overflow-hidden border-top">
-                        <a class="font-weight-bold p-3 d-block" href="sign-in.html">
-                            Log Out
-                        </a>
-                    </div>
+
+
+ 
                 </div>
                 <div class="box shadow-sm border rounded bg-white mb-3">
                     <div class="box-title border-bottom p-3">
@@ -109,10 +197,8 @@
                         <h6 class="m-0">About You</h6>
                     </div>
                     <div class="box-body p-3">
-                        <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
-                        </p>
-                        <p class="mb-0">Find the most qualified people in the most unexpected places. Information for applicants to consider when applying for local positions. The largest community on the web to find and list jobs that aren't restricted by commutes or a specific location.
-                        </p>
+                        <p> <%= userProfile.about%> </p>
+                        
                     </div>
                 </div>
                 <div class="box shadow-sm border rounded bg-white mb-3">
@@ -342,6 +428,10 @@
         </div>
     </div>
 </div>
+
+
+
+
 
 
 <%- include('newpartials/_footer'); %>

@@ -17,6 +17,19 @@
         <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
         <link href="/css/style.css" rel="stylesheet">
+        <style>
+            .modal-header {
+                background: #1f1f1f; 
+            }
+            .modal-body { 
+                color: #1f1f1f  ;
+            }
+            
+            .required:after {
+                content: "*";
+                color: red;
+            }
+        </style>
     </head>
 
     <body>
@@ -57,7 +70,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="//users/logout">
+                        <a class="nav-link" href="/users/logout">
                             <i class="feather-log-out mr-2"></i>
                             <span class="d-none d-lg-inline">Çıkış Yap</span>
                         </a>

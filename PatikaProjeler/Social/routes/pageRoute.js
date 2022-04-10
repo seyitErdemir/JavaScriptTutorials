@@ -10,6 +10,11 @@ router.route('/').get( authMiddleware, pageController.getIndexPage)
 router.route('/search').post(authMiddleware, pageController.getSearchPage)
 router.route('/profile/:id').get( authMiddleware, pageController.getUserProfilePage)
 
+router.route('/profileUpdate/:id').put( authMiddleware, pageController.updateUser)
+router.route('/profilefollow').post(authMiddleware, pageController.followUser)
+
+router.route('/profileunfollow').post( authMiddleware, pageController.unfollowUser)
+
 
 
 router.route('/about').get(pageController.getAboutPage)

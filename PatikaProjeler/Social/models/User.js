@@ -7,6 +7,14 @@ const UserSchema = new Schema({
         type: String,
         required: true
     },
+    title: {
+        type: String 
+    },
+     about: {
+        type: String 
+    },
+
+
     email: {
         type: String,
         required: true,
@@ -21,6 +29,16 @@ const UserSchema = new Schema({
         enum: ['user', 'preuser', 'admin'],
         default: 'user'
     },
+    following: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User"
+    }],
+    followers: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User"
+    }],
+
+
     courses: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: "Course"
@@ -36,13 +54,13 @@ const UserSchema = new Schema({
 //     })
 // })
 
-UserSchema.pre('save', function(next) {
+UserSchema.pre('save', function (next) {
     const user = this;
     if (!user.isModified('password')) return next();
 
-    bcrypt.genSalt(10, function(err, salt) {
+    bcrypt.genSalt(10, function (err, salt) {
         if (err) return next(err);
-        bcrypt.hash(user.password, salt,  function(err, hash) {
+        bcrypt.hash(user.password, salt, function (err, hash) {
             if (err) return next(err);
             user.password = hash;
             next();

@@ -33,18 +33,27 @@ exports.getSearchPage = async (req, res) => {
 
 exports.getUserProfilePage = async (req, res) => { 
     try { 
-        const active = false
+       var active = " "
+ 
         const user = await User.findById({_id:req.session.userID})
+        
         const userProfile = await User.findById({ _id: req.params.id })
-        if(user._id === userProfile._id){
+      
+        const totalFollowing =userProfile.following.length  
+       
+        const totalFollowers =userProfile.followers.length  
+        console.log(totalFollowers);
+
+        if( req.session.userID === req.params.id){
             active = true
-        }
+        } else{
+          active = false
+        } 
 
         //search  ve   profile detay kısımları yapıldı
-
-        console.log(user)
+ 
        
-        res.status(200).render('profile', { page_name: 'index' , userProfile  , active   })
+        res.status(200).render('profile', { page_name: 'index' , userProfile  , user  , active , totalFollowing , totalFollowers })
     } catch (error) {
         res.status(201).json({
           status: 'fail',
@@ -52,6 +61,75 @@ exports.getUserProfilePage = async (req, res) => {
         })
       }
 }
+
+exports.updateUser = async (req, res) => {
+  try {    
+  
+   const user =  await User.findById({_id:req.params.id}) 
+   user.name = req.body.name
+   user.title = req.body.title
+   user.about = req.body.about
+    user.save()  
+    res.status(200).redirect('back')
+
+  } catch (error) {
+    res.status(400).json({
+      status: 'fail',
+      error
+    })
+  }
+}
+
+exports.followUser = async (req, res) => {
+  try {
+      //giriş yapan kullanıcı bir kullanıcıyı takip ettiği zaman  ? 
+
+
+    //alttaki satırda giriş yapan kullnıcının following dizisine takip etmek istediği profilin idsini eklemekte
+    const user = await User.findById(req.session.userID)
+    await user.following.push({ _id: req.body.user_id })
+
+    //alttaki satırda ise takip ettigi kullanıcının followers  dizisine  takip eden profilin idsini eklemekte
+    const followUser = await User.findById( req.body.user_id) 
+    await followUser.followers.push({ _id: req.session.userID })
+   
+
+     await user.save() 
+     await followUser.save() 
+
+
+    res.status(200).redirect('back')
+  } catch (error) {
+    res.status(201).json({
+      status: 'fail',
+      error
+    })
+  }
+}
+
+exports.unfollowUser = async (req, res) => {
+  try {
+    const user = await User.findById(req.session.userID)
+    await user.following.pull({ _id:  req.body.user_id })
+
+    const unfollowUser = await User.findById( req.body.user_id)
+    await unfollowUser.followers.pull({ _id: req.session.userID })
+
+    await user.save()
+    await unfollowUser.save() 
+
+    res.status(200).redirect('back')
+  } catch (error) {
+    res.status(201).json({
+      status: 'fail',
+      error
+    })
+  }
+}
+
+
+
+
 
 
 
