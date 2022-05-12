@@ -1,4 +1,7 @@
 export default {
-  currentCategory: { categoryName: 'seyit' },
-  categories: []
+  currentCategory: { },
+  categories: [],
+  products: [],
+  cart: [],
+  savedProduct:{}
 }
