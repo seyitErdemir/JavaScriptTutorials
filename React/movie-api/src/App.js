@@ -32,7 +32,7 @@ const App = () => {
           ></input>
         </div>
 
-        <div className=' grid grid-cols-4  gap-3       px-4   p-8    mt-6 '>
+        <div className='grid grid-cols-1  md:grid-cols-2 lg:grid-cols-3  xl:grid-cols-4  2xl:grid-cols-5  gap-6  px-4   p-8    mt-6 '>
           {movie
             .filter(item =>
               item.title.toLowerCase().includes(search.toLowerCase())
@@ -43,7 +43,7 @@ const App = () => {
                   <h1>{film.title}</h1>
                 </div>
                 <div className='card-body'>
-                  <p className='yazi'>{film.overview}</p>
+                  <p className='yazi'>{film.overview.substring(0,320)}...</p>
                   <img
                     alt='movie'
                     src={'https://image.tmdb.org/t/p/w300' + film.poster_path}

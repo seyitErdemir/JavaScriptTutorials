@@ -21,7 +21,7 @@ body {
 }
 
 .searchInput input {
-    width: 30%;
+    width: 40%;
     box-sizing: border-box;
     height: 40px;
     font-size: 20px;
@@ -59,9 +59,7 @@ body {
 .yazi {
     display: none;
     position: absolute;
-    left: 20px;
-    top: 20px;
-    right: 20px;
+    padding: 20px;
     font-weight: 700;
 }
 
@@ -98,3 +96,23 @@ body {
 .card-body:hover .yazi {
     display: block;
 }
+
+
+@media only screen and (max-width: 1100px) {
+    .searchInput input {
+     
+        width: 60%;
+       
+      }
+     
+  }
+
+
+  @media only screen and (max-width: 900px) {
+    .searchInput input {
+     
+        width: 70%;
+       
+      }
+     
+  }
