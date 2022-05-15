@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
+import { useParams } from 'react-router-dom'
 import { getCategories } from '../../redux/actions/categoryActions'
 import { saveProduct } from '../../redux/actions/productActions'
+import ProductDetail from './ProductDetail'
 
 function AddOrUpdateProduct ({
   products,
@@ -12,6 +14,8 @@ function AddOrUpdateProduct ({
   history,
   ...props
 }) {
+  
+  
   const [product, setProduct] = useState({ ...props.product })
 
   useEffect(() => {
@@ -36,26 +40,39 @@ function AddOrUpdateProduct ({
   }
 
   return (
-      <div></div>
+    <ProductDetail
+      product={product}
+      categories={categories}
+      onChange={handleChange}
+      onSave={handleSave}
+    ></ProductDetail>
   )
 }
 
 export function getProductById (products, productId) {
-  let product = products.find(product => product.id === productId || null)
+  let product = products.find(product => product.id == productId || null)
   return product
 }
 
 function mapStateToProps (state, ownProps) {
+  
+  // const productId = ownProps.match.params.productId
+  //buradaya product ıd gelmemekte  
   const productId = ownProps.match.params.productId
+   
+  
+  
+  console.log(productId)
+
   const product =
-    productId && state.productReducer.length > 0
-      ? getProductById(state.productReducer, productId)
+    productId && state.productListReducer.length > 0
+      ? getProductById(state.productListReducer, productId)
       : {}
 
   return {
     product,
-    products: state.productReducer,
-    categories: state.categoryReducer
+    products: state.productListReducer,
+    categories: state.categoryListReducer
   }
 }
 
