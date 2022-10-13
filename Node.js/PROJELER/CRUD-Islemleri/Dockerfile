@@ -1,20 +1,12 @@
+FROM node:17.0.1-alpine3.12
 
- FROM node:16
+WORKDIR /app
+ 
 
-# Create app directory
-WORKDIR /usr/src/app
+COPY package*.json .
+RUN npm install 
+RUN npm install -g nodemon
+RUN npm i json-server
+RUN json-server --watch db.json 
 
-# Install app dependencies
-# A wildcard is used to ensure both package.json AND package-lock.json are copied
-# where available (npm@5+)
-COPY package*.json ./
-
-RUN npm install
-# If you are building your code for production
-# RUN npm ci --only=production
-
-# Bundle app source
-COPY . .
-
-EXPOSE 3000
-CMD [ "node", "app.js" ]
+CMD ["nodemon" , "app"]
